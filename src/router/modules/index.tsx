@@ -1,6 +1,6 @@
 import { FormattedMessage } from '@/components/FormattedMessage';
-import Layout from '@/layout';
-import Authority from '@/layout/Authority';
+import Layout from '@/layouts/app';
+import Authority from '@/layouts/Authority';
 import { AppstoreOutlined, DatabaseOutlined, HomeOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import type { RouteList } from '@/router/route';
 import {

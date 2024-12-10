@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { UseInfoType } from '@/server/useInfo';
+import type { UseInfoType } from '@/services/useInfo';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 interface UserSliceType {

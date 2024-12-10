@@ -5,7 +5,7 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import type { AsyncRouteType } from '@/store/modules/route';
 import type { RouteObject } from 'react-router-dom';
 import { baseRouter, whiteList } from './modules';
-import { handlePowerRoute } from './utils';
+import { handlePowerRoute } from './RouteUtil';
 import type { RouteList } from './route';
 
 const RouteView = memo(() => {

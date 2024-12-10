@@ -1,5 +1,5 @@
 import { createErrorModal, createErrorMsg } from '@/hooks/web/useMessage';
-import { isString } from 'lodash-es';
+import { isString } from 'lodash';
 import { checkStatus } from './axiosStatus';
 import { errorData } from './errorConfig';
 import { IAxios } from './iAxios';

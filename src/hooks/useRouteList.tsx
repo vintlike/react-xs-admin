@@ -39,7 +39,9 @@ export const useRouteList = () => {
     const menuList: MenuItem[] = [];
     rtList.forEach((i: RouteList) => {
       const item = i;
-      if (item.handle.hideSidebar) return;
+      if (item.handle.hideSidebar) {
+        return;
+      }
 
       if (!item.alwaysShow && item.alwaysShow !== undefined && !item.element) {
         if (item.children && item.children[0]) {

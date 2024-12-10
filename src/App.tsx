@@ -9,7 +9,7 @@ import LayoutSpin from './components/LayoutSpin';
 import { localeConfig, setIntl } from './locales';
 
 import RouteView from './router';
-import { initAsyncRoute } from './router/utils';
+import { initAsyncRoute } from './router/RouteUtil';
 import { useAppSelector } from './store/hooks';
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/en';
