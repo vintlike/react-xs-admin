@@ -1,18 +1,18 @@
 import { ErrorElement } from '@/router/lazy/whiteList';
 import { Typography } from 'antd';
 import { redirect } from 'react-router-dom';
-import type { MenuItem, RouteList } from '@/router/route';
+import type { MenuItem, RouteItem } from '@/router/route';
 import type { RouteObject } from 'react-router-dom';
 
 const { Text } = Typography;
 
 export const useRouteList = () => {
-  function handleRouteList(list: RouteList[]): RouteObject[] {
-    return list.map((i: RouteList) => {
+  function handleRouteList(list: RouteItem[]): RouteObject[] {
+    return list.map((i: RouteItem) => {
       const item: RouteObject = {
         path: i.path,
         id: i.id,
-        element: i.element,
+        element: i.element
       };
 
       if (i.element) {
@@ -26,7 +26,7 @@ export const useRouteList = () => {
             index: true,
             loader() {
               return redirect(i.redirect || '');
-            },
+            }
           });
         }
       }
@@ -35,9 +35,9 @@ export const useRouteList = () => {
     });
   }
 
-  function routeListToMenu(rtList: RouteList[], path?: React.Key): MenuItem[] {
+  function routeListToMenu(rtList: RouteItem[], path?: React.Key): MenuItem[] {
     const menuList: MenuItem[] = [];
-    rtList.forEach((i: RouteList) => {
+    rtList.forEach((i: RouteItem) => {
       const item = i;
       if (item.handle.hideSidebar) {
         return;
@@ -52,7 +52,7 @@ export const useRouteList = () => {
 
       let rtItem: MenuItem = {
         key: item.path,
-        label: '',
+        label: ''
       };
 
       if (path) {
@@ -66,7 +66,7 @@ export const useRouteList = () => {
             {item.handle.label}
           </Text>
         ),
-        icon: item.handle.icon,
+        icon: item.handle.icon
       };
 
       if (item.children && !item.element) {

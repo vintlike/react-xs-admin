@@ -3,9 +3,9 @@ import jsxiaosi from '@jsxiaosi/eslint-config';
 export default jsxiaosi({
   typescript: true,
   react: true,
-  prettier: {
-    usePrettierrc: true,
-  },
+  // prettier: {
+  //   usePrettierrc: true,
+  // },
   rules: {
     // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react-refresh/only-export-components': 'off',

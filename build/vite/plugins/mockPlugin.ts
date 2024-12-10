@@ -4,11 +4,11 @@
  */
 import { vitePluginFakeServer } from 'vite-plugin-fake-server';
 
-export function configMockPlugin() {
+export function mockPlugin() {
   return vitePluginFakeServer({
     logger: false,
     include: 'mock',
     infixName: false,
-    enableProd: true,
+    enableProd: true
   });
 }

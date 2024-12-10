@@ -13,16 +13,16 @@ const { Sider } = Layout;
 const Sidebar = memo(() => {
   const dispatch = useAppDispatch();
   const { collapsed, sidebarMode } = useAppSelector(
-    state => ({
+    (state) => ({
       collapsed: state.app.collapsed,
-      sidebarMode: state.app.sidebarMode,
+      sidebarMode: state.app.sidebarMode
     }),
-    shallowEqual,
+    shallowEqual
   );
   const globalTheme = theme.useToken();
   const responsive = useResponsive();
 
-  const onBreakpoint: SiderProps['onBreakpoint'] = broken => {
+  const onBreakpoint: SiderProps['onBreakpoint'] = (broken) => {
     let collapsedValue = collapsed;
     if (broken) {
       collapsedValue = true;
@@ -55,7 +55,7 @@ const Sidebar = memo(() => {
               css={{
                 backgroundColor: globalTheme.token.colorBgContainer,
                 borderRight: `1px solid ${globalTheme.token.colorBorder}`,
-                transition: `all ${globalTheme.token.motionDurationSlow} ${globalTheme.token.motionEaseOut}`,
+                transition: `all ${globalTheme.token.motionDurationSlow} ${globalTheme.token.motionEaseOut}`
               }}
             >
               {MenuRender}

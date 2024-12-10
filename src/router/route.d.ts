@@ -12,9 +12,9 @@ export interface MenuItem {
   hideTabs?: boolean;
 }
 
-export type RouteList = Omit<RouteObject, 'children'> & {
+export type RouteItem = Omit<RouteObject, 'children'> & {
   redirect?: string;
-  children?: RouteList[];
+  children?: RouteItem[];
   alwaysShow?: boolean;
   handle?: MenuItem;
   // meta: MenuItem;

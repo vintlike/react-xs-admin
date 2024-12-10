@@ -2,11 +2,9 @@ import { getRouteApi } from '@/services/route';
 import store from '@/store';
 import { setStoreAsyncRouter } from '@/store/modules/route';
 import { cloneDeep } from 'lodash';
-import { createBrowserRouter } from 'react-router-dom';
-import type { MenuItem, RouteList } from '@/router/route';
+import type { MenuItem, RouteItem } from '@/router/route';
 import type { AsyncRouteType } from '@/store/modules/route';
 import type { Key } from 'react';
-import type { RouteObject } from 'react-router-dom';
 import { defaultRoute } from './modules';
 
 // import { HomeOutlined } from '@ant-design/icons';
@@ -15,40 +13,38 @@ export async function initAsyncRoute(power: string) {
   store.dispatch(setStoreAsyncRouter([]));
 
   const res = await getRouteApi({ name: power });
+
   if (res.data.length) {
     store.dispatch(setStoreAsyncRouter(res.data));
   }
+
   return '';
 }
 
-export function handlePowerRoute(dataRouter: AsyncRouteType[], routerList: RouteList[] = defaultRoute) {
-  const newRouteList: RouteList[] = [];
-  routerList.forEach(i => {
-    const item = cloneDeep(i);
+export function handlePowerRoute(dataRouter: AsyncRouteType[], routerList: RouteItem[] = defaultRoute) {
+  const newRouteList: RouteItem[] = [];
+  routerList.forEach((item) => {
+    const rtItem = cloneDeep(item);
 
-    if (!item.handle.whiteList) {
-      const rItem = dataRouter.find(r => r.id === item.id);
+    if (!rtItem?.handle?.whiteList) {
+      const rItem = dataRouter.find((r) => r.id === rtItem.id);
       if (rItem) {
-        if (rItem.children && item.children && item.children.length) {
-          const children = handlePowerRoute(rItem.children, item.children);
-          item.children = children;
+        if (rItem.children && rtItem.children && rtItem.children.length) {
+          const children = handlePowerRoute(rItem.children, rtItem.children);
+          rtItem.children = children;
           if (children) {
-            newRouteList.push(item);
+            newRouteList.push(rtItem);
           }
         } else {
-          newRouteList.push(item);
+          newRouteList.push(rtItem);
         }
       }
     } else {
-      newRouteList.push(item);
+      newRouteList.push(rtItem);
     }
   });
 
   return newRouteList;
-}
-
-export function createRouterList(routeList: RouteObject[]) {
-  return createBrowserRouter(routeList);
 }
 
 // 通过path获取父级路径
@@ -82,7 +78,7 @@ export function getParentPaths(routePath: string, routes: MenuItem[]): string[] 
 
 // 查找对应path的路由信息
 export function findRouteByPath(path: Key, routes: MenuItem[]): MenuItem | null {
-  const res = routes.find(item => item.key === path) || null;
+  const res = routes.find((item) => item.key === path) || null;
   if (res) {
     return res;
   } else {
@@ -143,7 +139,9 @@ export function setUpRoutePath(routeList: AsyncRouteType[], pathName = '') {
 
 // 扁平路由
 export function formatFlatteningRoutes(routesList: AsyncRouteType[]) {
-  if (routesList.length === 0) return routesList;
+  if (routesList.length === 0) {
+    return routesList;
+  }
   let hierarchyList = routesList;
   for (let i = 0; i < hierarchyList.length; i++) {
     if (hierarchyList[i].children) {

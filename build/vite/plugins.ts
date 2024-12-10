@@ -2,28 +2,23 @@ import react from '@vitejs/plugin-react';
 import UnoCSS from 'unocss/vite';
 // import react from '@vitejs/plugin-react-swc';
 import type { ConfigEnv, PluginOption } from 'vite';
-import { configMockPlugin } from './mock';
-
-// svg配置
-import { configSvgPlugin } from './svg';
+import { mockPlugin } from './plugins/mockPlugin';
+import { svgIconsPlugin } from './plugins/svgIconsPlugin';
+import { svgrPlugin } from './plugins/svgrPlugin';
 
 export function createVitePlugins(_isBuild = false, _configEnv: ConfigEnv) {
-  const vitePlugins: PluginOption[] = [];
-
-  vitePlugins.push(
+  const vitePlugins: PluginOption[] = [
     react({
       jsxImportSource: '@emotion/react',
       babel: {
-        plugins: ['@emotion/babel-plugin'],
-      },
+        plugins: ['@emotion/babel-plugin']
+      }
     }),
-  );
-
-  vitePlugins.push(UnoCSS());
-
-  vitePlugins.push(configSvgPlugin());
-
-  vitePlugins.push(configMockPlugin());
+    UnoCSS(),
+    svgIconsPlugin(),
+    svgrPlugin(),
+    mockPlugin()
+  ];
 
   return vitePlugins;
 }

@@ -1,13 +1,13 @@
 import { Layout, theme } from 'antd';
-import React from 'react';
+import React, { memo } from 'react';
 
-import { AppFooter } from './AppFooter';
+import AppFooter from './AppFooter';
 import AppHeader from './AppHeader';
 import AppMain from './AppMain';
 import AppSider from './AppSider';
 import { ContainerLayout } from './AppStyle';
 
-const LayoutApp: React.FC = () => {
+const AppContainer = memo(() => {
   const globalTheme = theme.useToken();
 
   return (
@@ -20,6 +20,6 @@ const LayoutApp: React.FC = () => {
       </Layout>
     </ContainerLayout>
   );
-};
+});
 
-export default LayoutApp;
+export default AppContainer;

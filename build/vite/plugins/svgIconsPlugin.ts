@@ -6,14 +6,13 @@ import path from 'path';
 import process from 'process';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
-export function configSvgPlugin() {
-  const svgPlugin = createSvgIconsPlugin({
+export function svgIconsPlugin() {
+  return createSvgIconsPlugin({
     // 指定需要缓存的图标文件夹
     iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
     // 压缩配置
     // svgoOptions: false,
     // 指定symbolId格式
-    symbolId: 'icon-[dir]-[name]',
+    symbolId: 'icon-[dir]-[name]'
   });
-  return svgPlugin;
 }

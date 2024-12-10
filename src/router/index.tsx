@@ -6,10 +6,10 @@ import type { AsyncRouteType } from '@/store/modules/route';
 import type { RouteObject } from 'react-router-dom';
 import { baseRouter, whiteList } from './modules';
 import { handlePowerRoute } from './RouteUtil';
-import type { RouteList } from './route';
+import type { RouteItem } from './route';
 
 const RouteView = memo(() => {
-  const asyncRouter = useAppSelector(state => state.route.asyncRouter);
+  const asyncRouter = useAppSelector((state) => state.route.asyncRouter);
   const { handleRouteList } = useRouteList();
 
   // 为“/”根路由添加重定向
@@ -18,32 +18,31 @@ const RouteView = memo(() => {
     if (routerList.length) {
       routerList.push({
         path: '',
-        element: <Navigate to={routerList[0].path || ''} />,
+        element: <Navigate to={routerList[0].path || ''} />
       });
     }
     return [...routerList, ...whiteList];
   };
 
-  const mapBaseRouter = (baseRouter: RouteList[], asyncRouter: AsyncRouteType[]) => {
-    return baseRouter.map(i => {
-      const routeItem = i;
-      if (routeItem.path === '/') {
-        routeItem.children = handleRedirect(asyncRouter);
+  const mapBaseRouter = (baseRouter: RouteItem[], asyncRouter: AsyncRouteType[]) => {
+    return baseRouter.map((item) => {
+      if (item.path === '/') {
+        item.children = handleRedirect(asyncRouter);
       }
-      return routeItem;
+      return item;
     });
   };
 
-  const [route, setRoute] = useState<RouteList[]>(mapBaseRouter(baseRouter, asyncRouter));
+  const [route, setRoute] = useState<RouteItem[]>(mapBaseRouter(baseRouter, asyncRouter));
 
   // 更新路由列表
   useEffect(() => {
     setRoute(mapBaseRouter(baseRouter, asyncRouter));
   }, [asyncRouter]);
 
-  const routeElemt = createBrowserRouter(route as RouteObject[]);
+  const routeElem = createBrowserRouter(route as RouteObject[]);
 
-  return <RouterProvider router={routeElemt} />;
+  return <RouterProvider router={routeElem} />;
 });
 
 export default RouteView;
