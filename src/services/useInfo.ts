@@ -15,7 +15,7 @@ export const getUserInfo = (user: string, pwd: string) =>
   deffHttp.post<UseInfoType>(
     {
       url: '/mock_api/login',
-      data: { username: user, password: pwd },
+      data: { username: user, password: pwd }
     },
-    { errorMessageMode: 'modal', withToken: false },
+    { errorMessageMode: 'modal', withToken: false }
   );

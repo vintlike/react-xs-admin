@@ -3,7 +3,11 @@ import { message, Modal } from 'antd';
 
 import type { ModalFuncProps } from 'antd';
 
-function createElMessageBox(messageg: string, title: string, options: ModalFuncProps) {
+function createElMessageBox(
+  messageg: string,
+  title: string,
+  options: ModalFuncProps
+) {
   Modal.error({ title, content: messageg, ...options });
 }
 
@@ -18,6 +22,6 @@ export function createErrorMsg(msg: string) {
 export function useMessage() {
   return {
     createErrorModal,
-    createErrorMsg,
+    createErrorMsg
   };
 }

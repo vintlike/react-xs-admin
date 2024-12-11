@@ -15,23 +15,23 @@ const Home = memo(() => {
     {
       title: '待办事项',
       online: 24,
-      total: 70,
+      total: 70
     },
     {
       title: '待办任务',
       online: 39,
-      total: 100,
+      total: 100
     },
     {
       title: '目标计划',
       online: 5,
-      total: 10,
+      total: 10
     },
     {
       title: '评论回复',
       online: 10,
-      total: 40,
-    },
+      total: 40
+    }
   ];
 
   const value = (online: number, total: number) => {
@@ -41,19 +41,19 @@ const Home = memo(() => {
   return (
     <div className="">
       <Row gutter={[12, 12]}>
-        {speedList.map(i => {
+        {speedList.map((item) => {
           return (
-            <Col lg={6} sm={24} xs={24} key={i.title}>
-              <Card size="small" title={i.title} extra={<RightOutlined />}>
+            <Col lg={6} sm={24} xs={24} key={item.title}>
+              <Card size="small" title={item.title} extra={<RightOutlined />}>
                 <div css={getNumericalValue(globalTheme.token)}>
                   <div className="numerical-value">
                     <span className="number">
-                      {i.online}/{i.total}
+                      {item.online}/{item.total}
                     </span>
                     <span>Online/Total</span>
                   </div>
                   <Progress
-                    percent={value(i.online, i.total)}
+                    percent={value(item.online, item.total)}
                     // size={[200, 17]}
                     strokeColor={globalTheme.token.colorPrimary}
                   />

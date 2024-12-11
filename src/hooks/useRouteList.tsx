@@ -8,43 +8,46 @@ const { Text } = Typography;
 
 export const useRouteList = () => {
   function handleRouteList(list: RouteItem[]): RouteObject[] {
-    return list.map((i: RouteItem) => {
-      const item: RouteObject = {
-        path: i.path,
-        id: i.id,
-        element: i.element
+    return list.map((item: RouteItem) => {
+      const rtItem: RouteObject = {
+        id: item.id,
+        path: item.path,
+        element: item?.element
       };
 
-      if (i.element) {
-        item.errorElement = <ErrorElement pageType="Page" />;
+      if (item.element) {
+        rtItem.errorElement = <ErrorElement pageType="Page" />;
       }
 
-      if (i.children) {
-        item.children = handleRouteList(i.children);
-        if (i.redirect && item.children.length) {
-          item.children.push({
+      if (item?.children) {
+        rtItem.children = handleRouteList(item.children);
+        if (item?.redirect && rtItem.children.length) {
+          rtItem.children.push({
             index: true,
             loader() {
-              return redirect(i.redirect || '');
+              return redirect(item.redirect || '');
             }
           });
         }
       }
 
-      return item;
+      return rtItem;
     });
   }
 
-  function routeListToMenu(rtList: RouteItem[], path?: React.Key): MenuItem[] {
+  function routeListToMenu(list: RouteItem[], path?: React.Key): MenuItem[] {
     const menuList: MenuItem[] = [];
-    rtList.forEach((i: RouteItem) => {
-      const item = i;
-      if (item.handle.hideSidebar) {
+    list.forEach((item: RouteItem) => {
+      if (item?.handle?.hideSidebar) {
         return;
       }
 
-      if (!item.alwaysShow && item.alwaysShow !== undefined && !item.element) {
-        if (item.children && item.children[0]) {
+      if (
+        !item?.alwaysShow &&
+        item?.alwaysShow !== undefined &&
+        !item?.element
+      ) {
+        if (item?.children && item?.children?.[0]) {
           menuList.push(routeListToMenu([item.children[0]], item.path)[0]);
           return;
         }
@@ -62,11 +65,14 @@ export const useRouteList = () => {
       rtItem = {
         ...rtItem,
         label: (
-          <Text style={{ color: 'currentcolor' }} ellipsis={{ tooltip: item.handle.label }}>
-            {item.handle.label}
+          <Text
+            style={{ color: 'currentcolor' }}
+            ellipsis={{ tooltip: item?.handle?.label }}
+          >
+            {item?.handle?.label}
           </Text>
         ),
-        icon: item.handle.icon
+        icon: item?.handle?.icon
       };
 
       if (item.children && !item.element) {

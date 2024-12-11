@@ -22,7 +22,11 @@ const Locale = memo(() => {
   };
 
   return (
-    <Dropdown menu={{ items: menuItems, onClick: menuClick }} placement="bottom" trigger={['click']}>
+    <Dropdown
+      menu={{ items: menuItems, onClick: menuClick }}
+      placement="bottom"
+      trigger={['click']}
+    >
       <span style={{ fontSize: '1em' }}>
         <SvgIcon name="locales" />
       </span>

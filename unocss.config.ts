@@ -7,7 +7,7 @@ import {
   presetTypography,
   presetUno,
   transformerDirectives,
-  transformerVariantGroup,
+  transformerVariantGroup
 } from 'unocss';
 
 export default defineConfig({
@@ -20,9 +20,18 @@ export default defineConfig({
       success: '#0ac17e',
       danger: '#ff3c31',
       warning: '#fc8519',
-      info: '#72caed',
-    },
+      info: '#72caed'
+    }
   },
-  presets: [presetUno(), presetAttributify(), presetIcons(), presetTypography()],
-  transformers: [transformerDirectives(), transformerVariantGroup(), transformerAttributifyJsx()],
+  presets: [
+    presetUno(),
+    presetAttributify(),
+    presetIcons(),
+    presetTypography()
+  ],
+  transformers: [
+    transformerDirectives(),
+    transformerVariantGroup(),
+    transformerAttributifyJsx()
+  ]
 });

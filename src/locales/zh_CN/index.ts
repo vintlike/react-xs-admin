@@ -5,7 +5,7 @@ import login from './modules/login.json';
 const zh_CN = {
   ...layout,
   ...api,
-  ...login,
+  ...login
 };
 
 export default zh_CN;

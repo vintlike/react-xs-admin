@@ -1,14 +1,16 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
+import type { Recordable } from 'vite-plugin-fake-server';
 
 const userInfo = {
   name: '爱喝蜂蜜绿的小斯斯',
   userid: '00000001',
   email: '1531733886@qq.com',
-  signature: '甜甜的蜂蜜，甘甜的绿茶，蜂蜜中和了绿茶的苦涩保留了绿茶回甘，绝妙啊',
+  signature:
+    '甜甜的蜂蜜，甘甜的绿茶，蜂蜜中和了绿茶的苦涩保留了绿茶回甘，绝妙啊',
   introduction: '微笑着，努力着，欣赏着',
   title: '小斯斯',
   token: '',
-  power: 'admin',
+  power: 'admin'
 };
 
 const userInfo2 = {
@@ -19,7 +21,7 @@ const userInfo2 = {
   introduction: '一个只会喝蜂蜜绿的小前端',
   title: '咪咪咪',
   token: '',
-  power: 'test',
+  power: 'test'
 };
 
 export default defineFakeRoute([
@@ -34,23 +36,23 @@ export default defineFakeRoute([
         return {
           data: userInfo,
           code: 1,
-          message: 'ok',
+          message: 'ok'
         };
       } else if (username === 'test' && password === 'test123') {
         userInfo2.token = genID(16);
         return {
           data: userInfo2,
           code: 1,
-          message: 'ok',
+          message: 'ok'
         };
       } else {
         return {
           data: null,
           code: -1,
-          message: '账号密码错误',
+          message: '账号密码错误'
         };
       }
-    },
+    }
     // rawResponse: async (req, res) => {
     //   console.log(req, res);
     //   let reqbody = {};
@@ -66,10 +68,12 @@ export default defineFakeRoute([
     method: 'get',
     response: () => {
       return userInfo;
-    },
-  },
+    }
+  }
 ]);
 
 function genID(length: number) {
-  return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36);
+  return Number(
+    Math.random().toString().substr(3, length) + Date.now()
+  ).toString(36);
 }

@@ -9,18 +9,23 @@ import { Space, theme } from 'antd';
 import { memo } from 'react';
 import { shallowEqual } from 'react-redux';
 import Setting from '../components/Setting';
-import { HeaderBodyLayout, HeaderFootLayout, HeaderHeadLayout, HeaderLayout } from './AppStyle';
+import {
+  HeaderBodyLayout,
+  HeaderFootLayout,
+  HeaderHeadLayout,
+  HeaderLayout
+} from './AppStyle';
 import AppAccount from './components/AppAccount';
 import AppLogo from './components/AppLogo';
 
 const AppHeader = memo(() => {
   const dispatch = useAppDispatch();
   const { collapsed, sidebarMode } = useAppSelector(
-    state => ({
+    (state) => ({
       collapsed: state.app.collapsed,
-      sidebarMode: state.app.sidebarMode,
+      sidebarMode: state.app.sidebarMode
     }),
-    shallowEqual,
+    shallowEqual
   );
   const globalTheme = theme.useToken();
   const responsive = useResponsive();
@@ -29,7 +34,7 @@ const AppHeader = memo(() => {
     <HeaderLayout
       style={{
         backgroundColor: globalTheme.token.colorBgContainer,
-        borderBottom: `1px solid ${globalTheme.token.colorBorder}`,
+        borderBottom: `1px solid ${globalTheme.token.colorBorder}`
       }}
     >
       {(sidebarMode !== 'blend' || !responsive.sm) && (
@@ -47,7 +52,9 @@ const AppHeader = memo(() => {
           {sidebarMode === 'horizontal' && responsive.sm && <AppLogo />}
         </HeaderHeadLayout>
       )}
-      <HeaderBodyLayout>{sidebarMode !== 'vertical' && responsive.sm ? <AppMenu /> : null}</HeaderBodyLayout>
+      <HeaderBodyLayout>
+        {sidebarMode !== 'vertical' && responsive.sm ? <AppMenu /> : null}
+      </HeaderBodyLayout>
 
       <HeaderFootLayout>
         <Space size={10}>

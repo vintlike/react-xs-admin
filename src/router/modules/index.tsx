@@ -1,7 +1,12 @@
 import { FormattedMessage } from '@/components/FormattedMessage';
 import Layout from '@/layouts/app/AppContainer';
 import Authority from '@/layouts/Authority';
-import { AppstoreOutlined, DatabaseOutlined, HomeOutlined, UserSwitchOutlined } from '@ant-design/icons';
+import {
+  AppstoreOutlined,
+  DatabaseOutlined,
+  HomeOutlined,
+  UserSwitchOutlined
+} from '@ant-design/icons';
 import type { RouteItem } from '@/router/route';
 import {
   DetailsInfo,
@@ -21,13 +26,19 @@ export const defaultRoute: RouteItem[] = [
     path: '/home',
     id: 'Home',
     element: <Home />,
-    handle: { label: FormattedMessage({ id: 'layout.menu.home' }), icon: <HomeOutlined /> }
+    handle: {
+      label: FormattedMessage({ id: 'layout.menu.home' }),
+      icon: <HomeOutlined />
+    }
   },
   {
     path: '/nested',
     id: 'Nested',
     redirect: '/nested/menu1',
-    handle: { label: FormattedMessage({ id: 'layout.menu.nesting' }), icon: <AppstoreOutlined /> },
+    handle: {
+      label: FormattedMessage({ id: 'layout.menu.nesting' }),
+      icon: <AppstoreOutlined />
+    },
     children: [
       {
         path: 'menu1',
@@ -64,19 +75,25 @@ export const defaultRoute: RouteItem[] = [
         path: 'permissions',
         id: 'Permissions',
         element: <Permissions />,
-        handle: { label: FormattedMessage({ id: 'layout.menu.permissionsPage' }) }
+        handle: {
+          label: FormattedMessage({ id: 'layout.menu.permissionsPage' })
+        }
       },
       {
         path: 'test-permissions-a',
         id: 'TestPermissionsA',
         element: <TestPermissionsA />,
-        handle: { label: FormattedMessage({ id: 'layout.menu.testPermissionsPage1' }) }
+        handle: {
+          label: FormattedMessage({ id: 'layout.menu.testPermissionsPage1' })
+        }
       },
       {
         path: 'test-permissions-b',
         id: 'TestPermissionsB',
         element: <TestPermissionsB />,
-        handle: { label: FormattedMessage({ id: 'layout.menu.testPermissionsPage2' }) }
+        handle: {
+          label: FormattedMessage({ id: 'layout.menu.testPermissionsPage2' })
+        }
       }
     ]
   },
@@ -84,7 +101,10 @@ export const defaultRoute: RouteItem[] = [
     path: '/details-page',
     id: 'DetailsPage',
     alwaysShow: false,
-    handle: { label: FormattedMessage({ id: 'layout.menu.detailsPage' }), whiteList: true },
+    handle: {
+      label: FormattedMessage({ id: 'layout.menu.detailsPage' }),
+      whiteList: true
+    },
     children: [
       {
         path: '',

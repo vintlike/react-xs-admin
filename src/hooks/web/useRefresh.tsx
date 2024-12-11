@@ -10,6 +10,6 @@ export const useRefresh = () => {
   };
 
   return {
-    refresh,
+    refresh
   };
 };

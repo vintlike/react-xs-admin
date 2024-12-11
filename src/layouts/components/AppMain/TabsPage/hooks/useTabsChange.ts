@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import type { RightClickTags } from './useTabsState';
 
 export const useTabsChange = () => {
-  const multiTabs = useAppSelector(state => state.route.multiTabs);
+  const multiTabs = useAppSelector((state) => state.route.multiTabs);
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -16,9 +16,9 @@ export const useTabsChange = () => {
       setStoreMultiTabs({
         type,
         tabs: {
-          key: pathName,
-        },
-      }),
+          key: pathName
+        }
+      })
     );
   };
 
@@ -33,7 +33,7 @@ export const useTabsChange = () => {
 
   // 关闭当前导航
   const removeTab = (pathKey: string) => {
-    const item = multiTabs.findIndex(i => i.key === pathKey);
+    const item = multiTabs.findIndex((item) => item.key === pathKey);
     const tabsLength = multiTabs.length;
 
     let value: MultiTabsType;
@@ -49,22 +49,32 @@ export const useTabsChange = () => {
     handleTabsList(pathKey, 'delete');
   };
 
-  const closeTabsRoute = (pathKey: string, type: 'other' | 'left' | 'right') => {
-    const selectItemIndex = multiTabs.findIndex(i => i.key === pathKey);
-    const mapList = multiTabs.filter((i, index) => {
-      if (i.key !== pathKey && type === 'other') return true;
-      else if (index < selectItemIndex && type === 'left') return true;
-      else if (index > selectItemIndex && type === 'right') return true;
+  const closeTabsRoute = (
+    pathKey: string,
+    type: 'other' | 'left' | 'right'
+  ) => {
+    const selectItemIndex = multiTabs.findIndex((item) => item.key === pathKey);
+    const mapList = multiTabs.filter((item, index) => {
+      if (item.key !== pathKey && type === 'other') {
+        return true;
+      } else if (index < selectItemIndex && type === 'left') {
+        return true;
+      } else if (index > selectItemIndex && type === 'right') {
+        return true;
+      }
       return false;
     });
-    if (mapList.find(i => i.key === getCurrentPathname())) {
+    if (mapList.find((item) => item.key === getCurrentPathname())) {
       const { key } = multiTabs[selectItemIndex];
       navigate(key);
     }
-    mapList.forEach(i => i.key && handleTabsList(i.key, 'delete'));
+    mapList.forEach((item) => item.key && handleTabsList(item.key, 'delete'));
   };
 
-  const onTabsDropdownChange = (code: RightClickTags['code'], pathKey: string) => {
+  const onTabsDropdownChange = (
+    code: RightClickTags['code'],
+    pathKey: string
+  ) => {
     switch (code) {
       case 'refresh':
         refresh(pathKey);

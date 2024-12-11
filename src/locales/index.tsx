@@ -5,7 +5,7 @@ import zh_CN from './zh_CN';
 
 export const localeConfig = {
   'zh-CN': zh_CN,
-  'en-US': en_US,
+  'en-US': en_US
 };
 
 export type LocaleType = keyof typeof localeConfig;
@@ -24,7 +24,7 @@ export const useLocale = () => {
 
   return {
     ...rest,
-    formatMessage,
+    formatMessage
   };
 };
 
@@ -45,20 +45,20 @@ export const getIntl = (locale?: LocaleType, changeIntl?: boolean) => {
   if (locale && localeConfig[locale]) {
     return createIntl({
       locale,
-      messages: localeConfig[locale],
+      messages: localeConfig[locale]
     });
   }
   // 使用 zh-CN
   if (localeConfig['zh-CN'])
     return createIntl({
       locale: 'zh-CN',
-      messages: localeConfig['zh-CN'],
+      messages: localeConfig['zh-CN']
     });
 
   // 如果还没有，返回一个空的
   return createIntl({
     locale: 'zh-CN',
-    messages: {},
+    messages: {}
   });
 };
 

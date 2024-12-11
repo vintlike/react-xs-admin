@@ -1,4 +1,5 @@
 import { defineFakeRoute } from 'vite-plugin-fake-server/client';
+import type { Recordable } from 'vite-plugin-fake-server';
 
 const power = [
   {

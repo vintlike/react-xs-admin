@@ -11,8 +11,8 @@ export const getNumericalValue = (token: GlobalToken): CSSObject => {
       '.number': {
         color: token.colorText,
         fontSize: token.fontSizeHeading4,
-        fontWeight: 600,
-      },
-    },
+        fontWeight: 600
+      }
+    }
   };
 };

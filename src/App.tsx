@@ -17,15 +17,15 @@ import 'antd/dist/reset.css';
 
 function App() {
   const { locale, color, themeMode } = useAppSelector(
-    state => ({
+    (state) => ({
       locale: state.app.locale,
       color: state.app.color,
-      themeMode: state.app.themeMode,
+      themeMode: state.app.themeMode
     }),
-    shallowEqual,
+    shallowEqual
   );
-  const { userInfo } = useAppSelector(state => state.user);
-  const asyncRouter = useAppSelector(state => state.route.asyncRouter);
+  const { userInfo } = useAppSelector((state) => state.user);
+  const asyncRouter = useAppSelector((state) => state.route.asyncRouter);
 
   const getLocale = useMemo(() => {
     setIntl(locale);
@@ -55,9 +55,10 @@ function App() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: color || '#409eff',
+          colorPrimary: color || '#409eff'
         },
-        algorithm: themeMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        algorithm:
+          themeMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
       }}
       locale={getLocale}
     >

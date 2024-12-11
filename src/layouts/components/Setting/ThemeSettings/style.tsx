@@ -13,9 +13,9 @@ const getColorListStyle = (): CSSObject => {
         height: 20,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
-      },
-    },
+        justifyContent: 'space-between'
+      }
+    }
   };
 };
 
@@ -25,8 +25,8 @@ const getOptions = (token: GlobalToken): CSSObject => {
       marginTop: token.margin,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between',
-    },
+      justifyContent: 'space-between'
+    }
   };
 };
 

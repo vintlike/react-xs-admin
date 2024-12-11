@@ -34,7 +34,7 @@ const Login = memo(() => {
     setLoading(false);
   };
 
-  const userStore = useAppSelector(state => state.user);
+  const userStore = useAppSelector((state) => state.user);
 
   useEffect(() => {
     if (userStore.power) {
@@ -45,7 +45,10 @@ const Login = memo(() => {
   return (
     <div
       className="w-full h-full flex flex-col items-center justify-center relative"
-      style={{ backgroundColor: globalTheme.token.colorBgContainer, color: globalTheme.token.colorText }}
+      style={{
+        backgroundColor: globalTheme.token.colorBgContainer,
+        color: globalTheme.token.colorText
+      }}
     >
       <div className="flex flex-row justify-center items-center absolute top-3 right-3 gap-3">
         <AppLocale />
@@ -65,13 +68,27 @@ const Login = memo(() => {
         >
           <Form.Item<LoginForm>
             name="username"
-            rules={[{ required: true, message: intl.formatMessage({ id: 'login.userNameRules' }) }]}
+            rules={[
+              {
+                required: true,
+                message: intl.formatMessage({ id: 'login.userNameRules' })
+              }
+            ]}
           >
-            <Input prefix={<UserOutlined />} placeholder={intl.formatMessage({ id: 'login.username' })} allowClear />
+            <Input
+              prefix={<UserOutlined />}
+              placeholder={intl.formatMessage({ id: 'login.username' })}
+              allowClear
+            />
           </Form.Item>
           <Form.Item<LoginForm>
             name="password"
-            rules={[{ required: true, message: intl.formatMessage({ id: 'login.passwordRules' }) }]}
+            rules={[
+              {
+                required: true,
+                message: intl.formatMessage({ id: 'login.passwordRules' })
+              }
+            ]}
           >
             <Input.Password
               prefix={<LockOutlined />}
@@ -82,17 +99,28 @@ const Login = memo(() => {
           <Form.Item<LoginForm>>
             <div className="flex flex-row justify-between items-center">
               <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox>{intl.formatMessage({ id: 'login.rememberPassword' })}</Checkbox>
+                <Checkbox>
+                  {intl.formatMessage({ id: 'login.rememberPassword' })}
+                </Checkbox>
               </Form.Item>
 
-              <Button type="link" className="p-0" style={{ color: globalTheme.token.colorPrimary }}>
+              <Button
+                type="link"
+                className="p-0"
+                style={{ color: globalTheme.token.colorPrimary }}
+              >
                 {intl.formatMessage({ id: 'login.forgotPassword' })}
               </Button>
             </div>
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="w-full" loading={loading}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="w-full"
+              loading={loading}
+            >
               {intl.formatMessage({ id: 'login.button' })}
             </Button>
           </Form.Item>

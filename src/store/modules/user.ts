@@ -23,11 +23,11 @@ export const UserSlice = createSlice({
         state.userInfo.power = action.payload;
       }
     },
-    setSignOut: state => {
+    setSignOut: (state) => {
       delete state.userInfo;
       delete state.power;
-    },
-  },
+    }
+  }
 });
 
 export const { setUserInfo, setPower, setSignOut } = UserSlice.actions;

@@ -9,7 +9,7 @@ import {
   FooterCss,
   HeaderCss,
   MainCss,
-  SiderCss,
+  SiderCss
 } from '../LayoutStyle';
 
 export const LogoLayout = styled.div`

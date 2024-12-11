@@ -9,27 +9,35 @@ import { getThemeSettingsStyle } from './style';
 const ThemeSettings = memo(() => {
   const dispatch = useAppDispatch();
   const then = theme.useToken();
-  const color = useAppSelector(state => state.app.color);
+  const color = useAppSelector((state) => state.app.color);
   const { themeHtmlClassName } = useTransformTheme();
 
-  const colorList = ['#722ed1', '#eb2f96', '#52c41a', '#13c2c2', '#fadb14', '#fa541c', '#f5222d'];
+  const colorList = [
+    '#722ed1',
+    '#eb2f96',
+    '#52c41a',
+    '#13c2c2',
+    '#fadb14',
+    '#fa541c',
+    '#f5222d'
+  ];
 
   const { ThemeSettingsDiv } = getThemeSettingsStyle(then.token);
 
   return (
     <ThemeSettingsDiv>
       <div className="color-list">
-        {colorList.map(i => {
+        {colorList.map((item) => {
           return (
             <div
               className="cursor color-list-item"
-              style={{ backgroundColor: i }}
-              key={i}
+              style={{ backgroundColor: item }}
+              key={item}
               onClick={() => {
-                dispatch(setAppColor(i));
+                dispatch(setAppColor(item));
               }}
             >
-              {color === i && <CheckOutlined />}
+              {color === item && <CheckOutlined />}
               {/* <SvgIcon v-if="i === pureColor" class="icon" name="iEL-select" /> */}
             </div>
           );
@@ -37,11 +45,11 @@ const ThemeSettings = memo(() => {
       </div>
       <div className="options">
         <span>灰色模式</span>
-        <Switch onChange={e => themeHtmlClassName('html-grey', e)} />
+        <Switch onChange={(e) => themeHtmlClassName('html-grey', e)} />
       </div>
       <div className="options">
         <span>色弱模式</span>
-        <Switch onChange={e => themeHtmlClassName('html-weakness', e)} />
+        <Switch onChange={(e) => themeHtmlClassName('html-weakness', e)} />
       </div>
     </ThemeSettingsDiv>
   );

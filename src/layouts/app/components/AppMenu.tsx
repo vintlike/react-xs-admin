@@ -1,7 +1,7 @@
 import { useMenuList } from '@/hooks/useMenuList';
 import { findRouteByPath, getParentPaths } from '@/router/RouteUtil';
 import { useAppSelector } from '@/store/hooks';
-import { memo, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
@@ -18,23 +18,25 @@ const AppMenu = memo((props: Props) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { collapsed, sidebarMode } = useAppSelector(
-    state => ({
+    (state) => ({
       collapsed: state.app.collapsed,
-      sidebarMode: state.app.sidebarMode,
+      sidebarMode: state.app.sidebarMode
     }),
-    shallowEqual,
+    shallowEqual
   );
+
   const [openKeys, setOpenKeys] = useState<string[]>([]);
   const { menuList } = useMenuList();
 
   const selectOpenKey = useMemo(() => {
     if (sidebarMode === 'blend' && !isSidebar) {
       const routeKey = getParentPaths(pathname, menuList);
+
       return [routeKey[0]];
-    } else {
-      return [pathname];
     }
-  }, [pathname, sidebarMode]);
+
+    return [pathname];
+  }, [isSidebar, menuList, pathname, sidebarMode]);
 
   const menuItems = useMemo(() => {
     if (sidebarMode === 'blend') {
@@ -46,39 +48,67 @@ const AppMenu = memo((props: Props) => {
         if (parentRoute) {
           if (parentRoute.children) {
             return parentRoute.children;
-          } else {
-            return [parentRoute];
           }
+          return [parentRoute];
         }
         return [];
-      } else {
-        return menuList.map(i => {
-          const { key, label, icon } = i;
-          return {
-            key,
-            label,
-            icon,
-          };
-        });
       }
-    } else {
-      return menuList;
-    }
-  }, [sidebarMode, menuList, pathname, isSidebar]);
 
-  const onOpenChange: MenuProps['onOpenChange'] = keys => {
+      return menuList.map((item) => {
+        const { key, label, icon } = item;
+
+        return {
+          key,
+          label,
+          icon
+        };
+      });
+    }
+
+    return menuList;
+  }, [isSidebar, menuList, pathname, sidebarMode]);
+
+  const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     setOpenKeys(keys);
+  };
+
+  const navigateTo = useCallback(
+    (path: string) => {
+      // const redirectPath = path;
+      // const redirectParams: NavigateOptions = {};
+      // const { currentMenu } = getMenuInfoByPath(routes, redirectPath);
+
+      // if (currentMenu) {
+      //   if (currentMenu?.redirect) {
+      //     if (typeof currentMenu?.redirect === 'string') {
+      //       redirectPath = currentMenu?.redirect;
+      //     } else {
+      //       redirectPath = currentMenu?.redirect?.to;
+      //       redirectParams = currentMenu.redirect?.options || {};
+      //     }
+      //   }
+      //   navigate(redirectPath, redirectParams);
+      // }
+      navigate(path);
+    },
+    [navigate]
+  );
+
+  const menuItemClick: MenuProps['onClick'] = (e) => {
+    navigateTo(e.key);
   };
 
   useEffect(() => {
     if (isSidebar) {
+      let keys: string[] = [];
+
       if (!collapsed) {
-        setOpenKeys(getParentPaths(pathname, menuList));
-      } else {
-        setOpenKeys([]);
+        keys = getParentPaths(pathname, menuList);
       }
+
+      setOpenKeys(keys);
     }
-  }, [collapsed, pathname, isSidebar]);
+  }, [collapsed, pathname, isSidebar, menuList]);
 
   return (
     <MenuLayout
@@ -87,7 +117,7 @@ const AppMenu = memo((props: Props) => {
       openKeys={openKeys}
       selectedKeys={selectOpenKey}
       items={menuItems as MenuProps['items']}
-      onClick={e => navigate(e.key)}
+      onClick={menuItemClick}
       // 注意这个属性 `onOpenChange`
       onOpenChange={onOpenChange}
       style={{ border: 'none' }}

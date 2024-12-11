@@ -6,7 +6,7 @@ import './index.less';
 
 const AppTheme = () => {
   const dispatch = useAppDispatch();
-  const themeMode = useAppSelector(state => state.app.themeMode);
+  const themeMode = useAppSelector((state) => state.app.themeMode);
 
   const globalTheme = theme.useToken();
 
@@ -18,7 +18,10 @@ const AppTheme = () => {
         dispatch(setAppThemeMode(themeMode === 'dark' ? 'light' : 'dark'));
       }}
     >
-      <div className="theme-inner" style={{ backgroundColor: globalTheme.token.colorBorder }} />
+      <div
+        className="theme-inner"
+        style={{ backgroundColor: globalTheme.token.colorBorder }}
+      />
       <SvgIcon name="sun" />
       <SvgIcon name="moon" />
     </div>

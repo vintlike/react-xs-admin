@@ -1,6 +1,6 @@
 import type { ConfigEnv, UserConfig } from 'vite';
 import { createViteBuild } from './build/vite/build';
-import { createVitePlugins } from './build/vite/plugin';
+import { createVitePlugins } from './build/vite/plugins';
 import { createViteResolve } from './build/vite/resolve';
 import { createViteServer } from './build/vite/server';
 

@@ -15,11 +15,11 @@ const AppAccount = () => {
   const items: MenuProps['items'] = [
     {
       key: '1',
-      label: '退出登录',
-    },
+      label: '退出登录'
+    }
   ];
 
-  const menuChange: MenuProps['onClick'] = _e => {
+  const menuChange: MenuProps['onClick'] = (_e) => {
     removeStorage('userInfo');
     dispatch(setSignOut());
 
@@ -31,7 +31,7 @@ const AppAccount = () => {
       <Dropdown
         menu={{
           items,
-          onClick: menuChange,
+          onClick: menuChange
         }}
         placement="bottom"
         arrow

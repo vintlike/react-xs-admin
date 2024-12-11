@@ -1,7 +1,11 @@
 import { useRouteList } from '@/hooks/useRouteList';
 import { useAppSelector } from '@/store/hooks';
 import { memo, useEffect, useState } from 'react';
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider
+} from 'react-router-dom';
 import type { AsyncRouteType } from '@/store/modules/route';
 import type { RouteObject } from 'react-router-dom';
 import { baseRouter, whiteList } from './modules';
@@ -24,7 +28,10 @@ const RouteView = memo(() => {
     return [...routerList, ...whiteList];
   };
 
-  const mapBaseRouter = (baseRouter: RouteItem[], asyncRouter: AsyncRouteType[]) => {
+  const mapBaseRouter = (
+    baseRouter: RouteItem[],
+    asyncRouter: AsyncRouteType[]
+  ) => {
     return baseRouter.map((item) => {
       if (item.path === '/') {
         item.children = handleRedirect(asyncRouter);
@@ -33,7 +40,9 @@ const RouteView = memo(() => {
     });
   };
 
-  const [route, setRoute] = useState<RouteItem[]>(mapBaseRouter(baseRouter, asyncRouter));
+  const [route, setRoute] = useState<RouteItem[]>(
+    mapBaseRouter(baseRouter, asyncRouter)
+  );
 
   // 更新路由列表
   useEffect(() => {

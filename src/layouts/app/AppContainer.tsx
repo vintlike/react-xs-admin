@@ -11,7 +11,10 @@ const AppContainer = memo(() => {
   const globalTheme = theme.useToken();
 
   return (
-    <ContainerLayout className="app-container" style={{ color: globalTheme.token.colorText }}>
+    <ContainerLayout
+      className="app-container"
+      style={{ color: globalTheme.token.colorText }}
+    >
       <AppSider />
       <Layout>
         <AppHeader />

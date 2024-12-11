@@ -16,15 +16,15 @@ let data = [
   { name: 'I18n', value: 0 },
   { name: 'VitePress', value: 0 },
   { name: 'Umi', value: 0 },
-  { name: 'And Design', value: 0 },
+  { name: 'And Design', value: 0 }
 ];
 
 const WordCloudChart = memo(() => {
   const { theme } = useChartsConfig();
 
-  data = data.map(i => {
-    i.value = Math.random() * 30 + 8;
-    return i;
+  data = data.map((item) => {
+    item.value = Math.random() * 30 + 8;
+    return item;
   });
   const config: WordCloudConfig = {
     data,
@@ -35,22 +35,22 @@ const WordCloudChart = memo(() => {
     color: ['#e3e3e3', '#e3e3e3', '#e3e3e3'],
     wordStyle: {
       fontFamily: 'Verdana',
-      fontSize: [18, 26],
+      fontSize: [18, 26]
     },
     // 设置交互类型
     interactions: [
       {
-        type: 'element-active',
-      },
+        type: 'element-active'
+      }
     ],
     state: {
       active: {
         // 这里可以设置 active 时的样式
         style: {
-          lineWidth: 3,
-        },
-      },
-    },
+          lineWidth: 3
+        }
+      }
+    }
   };
 
   return <WordCloud {...config} />;

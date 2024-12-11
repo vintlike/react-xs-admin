@@ -93,8 +93,18 @@
         "subTickLine": null,
         "animate": true
       },
-      "top": { "position": "top", "grid": null, "title": null, "verticalLimitLength": 0.5 },
-      "bottom": { "position": "bottom", "grid": null, "title": null, "verticalLimitLength": 0.5 },
+      "top": {
+        "position": "top",
+        "grid": null,
+        "title": null,
+        "verticalLimitLength": 0.5
+      },
+      "bottom": {
+        "position": "bottom",
+        "grid": null,
+        "title": null,
+        "verticalLimitLength": 0.5
+      },
       "left": {
         "position": "left",
         "title": null,
@@ -135,7 +145,11 @@
     "legend": {
       "common": {
         "title": null,
-        "marker": { "symbol": "circle", "spacing": 8, "style": { "r": 4, "fill": "#5B8FF9" } },
+        "marker": {
+          "symbol": "circle",
+          "spacing": 8,
+          "style": { "r": 4, "fill": "#5B8FF9" }
+        },
         "itemName": {
           "spacing": 5,
           "style": {
@@ -154,7 +168,10 @@
             "nameStyle": { "fill": "#D8D8D8" },
             "markerStyle": { "fill": "#D8D8D8", "stroke": "#D8D8D8" }
           },
-          "inactive": { "nameStyle": { "fill": "#D8D8D8" }, "markerStyle": { "opacity": 0.2 } }
+          "inactive": {
+            "nameStyle": { "fill": "#D8D8D8" },
+            "markerStyle": { "opacity": 0.2 }
+          }
         },
         "flipPage": true,
         "pageNavigator": {
@@ -201,7 +218,10 @@
             "fontFamily": "\"Segoe UI\", Roboto, \"Helvetica Neue\", Arial,\n    \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\",\n    \"Noto Color Emoji\""
           }
         },
-        "handler": { "size": 10, "style": { "fill": "#F0F0F0", "stroke": "#BFBFBF" } },
+        "handler": {
+          "size": 10,
+          "style": { "fill": "#F0F0F0", "stroke": "#BFBFBF" }
+        },
         "slidable": true,
         "padding": [8, 8, 8, 8]
       }
@@ -229,7 +249,11 @@
         "text": null,
         "textBackground": {
           "padding": 2,
-          "style": { "fill": "rgba(0, 0, 0, 0.25)", "lineWidth": 0, "stroke": null }
+          "style": {
+            "fill": "rgba(0, 0, 0, 0.25)",
+            "lineWidth": 0,
+            "stroke": null
+          }
         },
         "follow": false
       },
@@ -250,7 +274,11 @@
           "padding": "0 12px 0 12px"
         },
         "g2-tooltip-title": { "marginBottom": "12px", "marginTop": "12px" },
-        "g2-tooltip-list": { "margin": 0, "listStyleType": "none", "padding": 0 },
+        "g2-tooltip-list": {
+          "margin": 0,
+          "listStyleType": "none",
+          "padding": 0
+        },
         "g2-tooltip-list-item": {
           "listStyleType": "none",
           "padding": 0,
@@ -266,11 +294,18 @@
           "display": "inline-block",
           "marginRight": "8px"
         },
-        "g2-tooltip-value": { "display": "inline-block", "float": "right", "marginLeft": "30px" }
+        "g2-tooltip-value": {
+          "display": "inline-block",
+          "float": "right",
+          "marginLeft": "30px"
+        }
       }
     },
     "annotation": {
-      "arc": { "style": { "stroke": "#D9D9D9", "lineWidth": 1 }, "animate": true },
+      "arc": {
+        "style": { "stroke": "#D9D9D9", "lineWidth": 1 },
+        "animate": true
+      },
       "line": {
         "style": { "stroke": "#BFBFBF", "lineDash": null, "lineWidth": 1 },
         "text": {
@@ -302,14 +337,22 @@
       },
       "region": {
         "top": false,
-        "style": { "lineWidth": 0, "stroke": null, "fill": "#000", "fillOpacity": 0.06 },
+        "style": {
+          "lineWidth": 0,
+          "stroke": null,
+          "fill": "#000",
+          "fillOpacity": 0.06
+        },
         "animate": true
       },
       "image": { "top": false, "animate": true },
       "dataMarker": {
         "top": true,
         "point": { "style": { "r": 3, "stroke": "#5B8FF9", "lineWidth": 2 } },
-        "line": { "style": { "stroke": "#BFBFBF", "lineWidth": 1 }, "length": 16 },
+        "line": {
+          "style": { "stroke": "#BFBFBF", "lineWidth": 1 },
+          "length": 16
+        },
         "text": {
           "style": {
             "textAlign": "start",
@@ -368,7 +411,12 @@
     },
     "scrollbar": {
       "common": { "padding": [8, 8, 8, 8] },
-      "default": { "style": { "trackColor": "rgba(0,0,0,0)", "thumbColor": "rgba(0,0,0,0.15)" } },
+      "default": {
+        "style": {
+          "trackColor": "rgba(0,0,0,0)",
+          "thumbColor": "rgba(0,0,0,0.15)"
+        }
+      },
       "hover": { "style": { "thumbColor": "rgba(0,0,0,0.2)" } }
     }
   },

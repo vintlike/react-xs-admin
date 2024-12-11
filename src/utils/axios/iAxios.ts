@@ -2,7 +2,12 @@ import { isFunction } from '@/utils/is';
 import axios from 'axios';
 import { cloneDeep } from 'lodash';
 import type { RequestOptions, Result } from '#/axios';
-import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse
+} from 'axios';
 import type { CreateAxiosOptions } from './axiosConfig';
 
 /**
@@ -51,64 +56,95 @@ export class IAxios {
     if (!interceptor) {
       return;
     }
-    const { requestInterceptors, requestInterceptorsCatch, responseInterceptors, responseInterceptorsCatch } =
-      interceptor;
+    const {
+      requestInterceptors,
+      requestInterceptorsCatch,
+      responseInterceptors,
+      responseInterceptorsCatch
+    } = interceptor;
 
     // 此方法为了过滤不挂载interceptor没配置的拦截器
 
     // 请求拦截器配置
     requestInterceptors &&
       isFunction(requestInterceptors) &&
-      this.axiosInstance.interceptors.request.use(requestInterceptors, undefined);
+      this.axiosInstance.interceptors.request.use(
+        requestInterceptors,
+        undefined
+      );
 
     // 请求拦截器失败配置
     requestInterceptorsCatch &&
       isFunction(requestInterceptorsCatch) &&
-      this.axiosInstance.interceptors.request.use(undefined, requestInterceptorsCatch);
+      this.axiosInstance.interceptors.request.use(
+        undefined,
+        requestInterceptorsCatch
+      );
 
     // 响应拦截器配置
     responseInterceptors &&
       isFunction(responseInterceptors) &&
-      this.axiosInstance.interceptors.response.use(responseInterceptors, undefined);
+      this.axiosInstance.interceptors.response.use(
+        responseInterceptors,
+        undefined
+      );
 
     // 响应拦截器失败配置
     responseInterceptorsCatch &&
       isFunction(responseInterceptorsCatch) &&
-      this.axiosInstance.interceptors.response.use(undefined, responseInterceptorsCatch);
+      this.axiosInstance.interceptors.response.use(
+        undefined,
+        responseInterceptorsCatch
+      );
   }
 
   /**
    * @description get请求（config：axios请求配置, options：数据的特殊处理）
    */
-  get<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<Result<T>> {
+  get<T = any>(
+    config: AxiosRequestConfig,
+    options?: RequestOptions
+  ): Promise<Result<T>> {
     return this.request<T>({ ...config, method: 'GET' }, options);
   }
 
   /**
    * @description post请求（config：axios请求配置, options：数据的特殊处理）
    */
-  post<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<Result<T>> {
+  post<T = any>(
+    config: AxiosRequestConfig,
+    options?: RequestOptions
+  ): Promise<Result<T>> {
     return this.request<T>({ ...config, method: 'POST' }, options);
   }
 
   /**
    * @description put请求（config：axios请求配置, options：数据的特殊处理）
    */
-  put<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<Result<T>> {
+  put<T = any>(
+    config: AxiosRequestConfig,
+    options?: RequestOptions
+  ): Promise<Result<T>> {
     return this.request<T>({ ...config, method: 'PUT' }, options);
   }
 
   /**
    * @description delete请求（config：axios请求配置, options：数据的特殊处理）
    */
-  delete<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<Result<T>> {
+  delete<T = any>(
+    config: AxiosRequestConfig,
+    options?: RequestOptions
+  ): Promise<Result<T>> {
     return this.request<T>({ ...config, method: 'DELETE' }, options);
   }
 
   /**
    * @description 请求体
    */
-  request<T = any>(config: AxiosRequestConfig, options?: RequestOptions): Promise<Result<T>> {
+  request<T = any>(
+    config: AxiosRequestConfig,
+    options?: RequestOptions
+  ): Promise<Result<T>> {
     let conf: CreateAxiosOptions = cloneDeep(config);
 
     const interceptor = this.getInterceptor();
@@ -117,7 +153,8 @@ export class IAxios {
 
     const opt: RequestOptions = Object.assign({}, requestOptions, options);
 
-    const { beforeRequestHook, requestCatchHook, requestHook } = interceptor || {};
+    const { beforeRequestHook, requestCatchHook, requestHook } =
+      interceptor || {};
     if (beforeRequestHook && isFunction(beforeRequestHook)) {
       conf = beforeRequestHook(conf, opt);
     }

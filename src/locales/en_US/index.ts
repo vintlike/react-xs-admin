@@ -5,7 +5,7 @@ import login from './modules/login.json';
 const en_US = {
   ...layout,
   ...api,
-  ...login,
+  ...login
 };
 
 export default en_US;

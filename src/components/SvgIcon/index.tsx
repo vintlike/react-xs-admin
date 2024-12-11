@@ -13,7 +13,10 @@ const SvgIcon = memo((props: SvgIconType) => {
   return (
     <span className={`svg-icon ${className || ''}`}>
       <svg className="svg" aria-hidden>
-        <use xlinkHref={`#${prefix || 'icon'}-${name}`} fill={color || '#333'} />
+        <use
+          xlinkHref={`#${prefix || 'icon'}-${name}`}
+          fill={color || '#333'}
+        />
       </svg>
     </span>
   );

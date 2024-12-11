@@ -22,7 +22,7 @@ export const getSidebarMode = (token: GlobalToken): CSSObject => {
             '&:nth-of-type(1)': {
               width: '30%',
               height: '100%',
-              background: token.colorPrimary,
+              background: token.colorPrimary
             },
 
             '&:nth-of-type(2)': {
@@ -32,9 +32,9 @@ export const getSidebarMode = (token: GlobalToken): CSSObject => {
               width: '70%',
               height: '30%',
               background: '#fff',
-              boxShadow: '0 0 1px #888',
-            },
-          },
+              boxShadow: '0 0 1px #888'
+            }
+          }
         },
         '&:nth-of-type(2)': {
           div: {
@@ -42,16 +42,16 @@ export const getSidebarMode = (token: GlobalToken): CSSObject => {
               width: '100%',
               height: '30%',
               boxShadow: '0 0 1px #888',
-              background: token.colorPrimary,
-            },
-          },
+              background: token.colorPrimary
+            }
+          }
         },
         '&:nth-of-type(3)': {
           div: {
             '&:nth-of-type(1)': {
               width: '30%',
               height: '100%',
-              background: '#fff',
+              background: '#fff'
             },
 
             '&:nth-of-type(2)': {
@@ -61,14 +61,14 @@ export const getSidebarMode = (token: GlobalToken): CSSObject => {
               width: '100%',
               height: '30%',
               background: token.colorPrimary,
-              boxShadow: '0 0 1px #888',
-            },
-          },
-        },
+              boxShadow: '0 0 1px #888'
+            }
+          }
+        }
       },
       '.sidebar_mode-select': {
-        border: `2px solid ${token.colorPrimary}`,
-      },
-    },
+        border: `2px solid ${token.colorPrimary}`
+      }
+    }
   };
 };

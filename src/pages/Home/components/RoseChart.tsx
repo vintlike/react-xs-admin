@@ -6,16 +6,16 @@ import type { PieConfig } from '@ant-design/charts';
 const data = [
   {
     type: 'Vue',
-    value: 70,
+    value: 70
   },
   {
     type: 'React',
-    value: 20,
+    value: 20
   },
   {
     type: 'Angular',
-    value: 10,
-  },
+    value: 10
+  }
 ];
 
 const RoseChart = memo(() => {
@@ -33,21 +33,21 @@ const RoseChart = memo(() => {
     innerRadius: 0.64,
     meta: {
       value: {
-        formatter: (v: number) => `${v}`,
-      },
+        formatter: (v: number) => `${v}`
+      }
     },
     legend: {
       layout: 'horizontal',
-      position: 'bottom',
+      position: 'bottom'
     },
     label: {
       type: 'inner',
       offset: '-50%',
       style: {
-        textAlign: 'center',
+        textAlign: 'center'
       },
       autoRotate: false,
-      content: '{value}',
+      content: '{value}'
     },
     statistic: {
       title: {
@@ -56,8 +56,8 @@ const RoseChart = memo(() => {
             return datum.type;
           }
           return '卷';
-        },
-      },
+        }
+      }
       // content: {
       //   offsetY: 4,
       //   style: {
@@ -71,15 +71,15 @@ const RoseChart = memo(() => {
     // 添加 中心统计文本 交互
     interactions: [
       {
-        type: 'element-selected',
+        type: 'element-selected'
       },
       {
-        type: 'element-active',
+        type: 'element-active'
       },
       {
-        type: 'pie-statistic-active',
-      },
-    ],
+        type: 'pie-statistic-active'
+      }
+    ]
   };
 
   return <Pie {...config} />;

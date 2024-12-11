@@ -17,20 +17,20 @@ const getCommentItem = (token: GlobalToken): CSSObject => {
         flexDirection: 'column',
         flex: 1,
         '.title': {
-          fontSize: token.fontSize,
+          fontSize: token.fontSize
         },
         time: {
-          fontSize: token.fontSizeSM,
+          fontSize: token.fontSizeSM
         },
         '.text': {
           textOverflow: 'ellipsis',
           overflow: 'hidden',
           display: '-webkit-box',
           WebkitLineClamp: '2',
-          ' -webkit-box-orient': 'vertical',
-        },
-      },
-    },
+          ' -webkit-box-orient': 'vertical'
+        }
+      }
+    }
   };
 };
 
@@ -40,9 +40,9 @@ const Comment = memo(() => {
   return (
     <div css={getCommentItem(globalTheme.token)}>
       <ul>
-        {[1, 2, 3, 4].map(i => {
+        {[1, 2, 3, 4].map((item) => {
           return (
-            <li key={i}>
+            <li key={item}>
               <div className="item">
                 <Avatar size={52} icon={<UserOutlined />} src={avatar} />
                 <div className="item-content">

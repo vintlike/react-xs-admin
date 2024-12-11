@@ -1,5 +1,10 @@
 import LayoutSpin from '@/components/LayoutSpin';
-import { ContentBodyLayout, ContentHeadLayout, ContentLayout, MainLayout } from '@/layouts/app/AppStyle';
+import {
+  ContentBodyLayout,
+  ContentHeadLayout,
+  ContentLayout,
+  MainLayout
+} from '@/layouts/app/AppStyle';
 import { memo, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { KeepAlive } from '../components/AppMain/KeepAlive';

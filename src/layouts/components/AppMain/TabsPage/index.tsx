@@ -23,27 +23,29 @@ const TabsPage = memo((_props: Props) => {
   const mark = useMatch(location.pathname);
   const { routeListToMenu } = useRouteList();
   const menuList = routeListToMenu(defaultRoute);
-  const asyncRouter = useAppSelector(state => state.route.asyncRouter);
-  const multiTabs = useAppSelector(state => state.route.multiTabs);
+  const asyncRouter = useAppSelector((state) => state.route.asyncRouter);
+  const multiTabs = useAppSelector((state) => state.route.multiTabs);
   const { addRouteTabs, removeTab } = useTabsChange();
   const { refresh } = useRefresh();
 
   const globalTheme = theme.useToken();
 
   const tabsItem = useMemo(() => {
-    return multiTabs.map(i => {
+    return multiTabs.map((item) => {
       let routeBy = null;
-      if (!i.label) routeBy = findRouteByPath(i.key, menuList);
+      if (!item.label) routeBy = findRouteByPath(item.key, menuList);
       return {
-        key: i.key,
+        key: item.key,
         label: (
-          <TabsItemLabel pathKey={i.key}>
+          <TabsItemLabel pathKey={item.key}>
             <div className="tabs-tab-label">
-              {i.localeLabel ? FormattedMessage({ id: i.localeLabel }) : ''}
-              {i.label || routeBy?.label}
+              {item.localeLabel
+                ? FormattedMessage({ id: item.localeLabel })
+                : ''}
+              {item.label || routeBy?.label}
             </div>
           </TabsItemLabel>
-        ),
+        )
       };
     });
   }, [multiTabs]);
@@ -73,7 +75,7 @@ const TabsPage = memo((_props: Props) => {
       size="small"
       activeKey={location.pathname + location.search}
       type={tabsItem.length > 1 ? 'editable-card' : 'card'}
-      onChange={key => navigate(key)}
+      onChange={(key) => navigate(key)}
       onEdit={onEdit}
       tabBarExtraContent={{
         right: (
@@ -89,10 +91,10 @@ const TabsPage = memo((_props: Props) => {
               <CaretDownFilled />
             </TabsItemLabel>
           </div>
-        ),
+        )
       }}
       tabBarStyle={{
-        margin: 0,
+        margin: 0
       }}
       items={tabsItem}
     />

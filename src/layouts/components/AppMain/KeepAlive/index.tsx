@@ -15,7 +15,12 @@ interface ComponentProps extends ComponentReactElement {
   renderDiv: RefObject<HTMLDivElement>;
 }
 
-export const Component: React.FC<ComponentProps> = ({ active, children, name, renderDiv }) => {
+export const Component: React.FC<ComponentProps> = ({
+  active,
+  children,
+  name,
+  renderDiv
+}) => {
   const [targetElement] = useState(() => document.createElement('div'));
   const activatedRef = useRef(false);
   activatedRef.current = activatedRef.current || active;
@@ -36,7 +41,11 @@ export const Component: React.FC<ComponentProps> = ({ active, children, name, re
     targetElement.setAttribute('id', name);
   }, [name, targetElement]);
 
-  return <Suspense fallback={<LayoutSpin />}>{activatedRef.current && createPortal(children, targetElement)}</Suspense>;
+  return (
+    <Suspense fallback={<LayoutSpin />}>
+      {activatedRef.current && createPortal(children, targetElement)}
+    </Suspense>
+  );
 };
 
 interface Props extends ComponentReactElement {
@@ -47,25 +56,31 @@ export const KeepAlive = memo(({ maxLen = 10 }: Props) => {
   const location = useLocation();
   const params = useParams();
   const activeName = location.pathname + location.search;
-  const multiTabs = useAppSelector(state => state.route.multiTabs);
+  const multiTabs = useAppSelector((state) => state.route.multiTabs);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const [cacheReactNodes, setCacheReactNodes] = useState<Array<{ name: string; ele?: ReactNode }>>([]);
+  const [cacheReactNodes, setCacheReactNodes] = useState<
+    Array<{ name: string; ele?: ReactNode }>
+  >([]);
 
   useEffect(() => {
     if (!activeName) {
       return;
     }
-    const include = multiTabs.map(i => i.key);
-    setCacheReactNodes(reactNodes => {
-      reactNodes = reactNodes.filter(i => !i.name.startsWith('/refresh'));
+    const include = multiTabs.map((item) => item.key);
+    setCacheReactNodes((reactNodes) => {
+      reactNodes = reactNodes.filter(
+        (item) => !item.name.startsWith('/refresh')
+      );
 
       if (location.pathname.startsWith('/refresh')) {
-        const reactIndex = reactNodes.findIndex(res => res.name === `/${params['*']}${location.search}`);
+        const reactIndex = reactNodes.findIndex(
+          (res) => res.name === `/${params['*']}${location.search}`
+        );
         if (reactIndex !== -1) reactNodes.splice(reactIndex, 1);
         reactNodes.push({
           name: activeName,
-          ele,
+          ele
         });
         return reactNodes;
       }
@@ -75,17 +90,17 @@ export const KeepAlive = memo(({ maxLen = 10 }: Props) => {
         reactNodes.splice(0, 1);
       }
       // 添加
-      const reactNode = reactNodes.find(res => res.name === activeName);
+      const reactNode = reactNodes.find((res) => res.name === activeName);
       if (!reactNode) {
         reactNodes.push({
           name: activeName,
-          ele,
+          ele
         });
       }
 
       // 缓存路由列表和标签页列表同步
       if (include) {
-        return reactNodes.filter(i => include.includes(i.name));
+        return reactNodes.filter((item) => include.includes(item.name));
       }
       return reactNodes;
     });
@@ -94,10 +109,15 @@ export const KeepAlive = memo(({ maxLen = 10 }: Props) => {
   return (
     <>
       <div ref={containerRef} className="keep-alive" />
-      {cacheReactNodes.map(i => {
+      {cacheReactNodes.map((item) => {
         return (
-          <Component active={i.name === activeName} renderDiv={containerRef} name={i.name} key={i.name}>
-            {i.ele}
+          <Component
+            active={item.name === activeName}
+            renderDiv={containerRef}
+            name={item.name}
+            key={item.name}
+          >
+            {item.ele}
           </Component>
         );
       })}

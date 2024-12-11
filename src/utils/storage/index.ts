@@ -10,7 +10,7 @@ const SECRET_IV = CryptoJS.enc.Utf8.parse('e3bbe7e3ba84431a');
 let config: StorageConfig = {
   prefix: 'xiaosiAdmin', // 名称前缀 建议：项目名 + 项目版本
   expire: 0, //过期时间 单位：秒
-  isEncrypt: false, // 默认加密 为了调试方便, 开发过程中可以不加密
+  isEncrypt: false // 默认加密 为了调试方便, 开发过程中可以不加密
 };
 
 /**
@@ -30,7 +30,7 @@ const encrypt = (data: string): string => {
   const encrypted = CryptoJS.AES.encrypt(dataHex, SECRET_KEY, {
     iv: SECRET_IV,
     mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7,
+    padding: CryptoJS.pad.Pkcs7
   });
   return encrypted.ciphertext.toString();
 };
@@ -46,7 +46,7 @@ const decrypt = (data: string): string => {
   const decrypt = CryptoJS.AES.decrypt(str, SECRET_KEY, {
     iv: SECRET_IV,
     mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7,
+    padding: CryptoJS.pad.Pkcs7
   });
   const decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
   return decryptedStr.toString();
@@ -90,35 +90,52 @@ export const isSupportStorage = () => {
 };
 
 // 设置 setStorage
-export const setStorage = <T>(key: string, value: StorageValue<T>, expire = 0, type: StorageType = 'localStorage') => {
+export const setStorage = <T>(
+  key: string,
+  value: StorageValue<T>,
+  expire = 0,
+  type: StorageType = 'localStorage'
+) => {
   if (value === null || value === undefined) {
     value = null;
   }
 
   if (isNaN(expire) || expire < 0) throw new Error('Expire 必须是数字');
 
-  if (config.expire > 0 || expire > 0) expire = (expire || config.expire) * 1000;
+  if (config.expire > 0 || expire > 0)
+    expire = (expire || config.expire) * 1000;
   const data = {
     value, // 存储值
     time: Date.now(), //存值时间戳
-    expire, // 过期时间
+    expire // 过期时间
   };
 
-  const encryptString = config.isEncrypt ? encrypt(JSON.stringify(data)) : JSON.stringify(data);
+  const encryptString = config.isEncrypt
+    ? encrypt(JSON.stringify(data))
+    : JSON.stringify(data);
 
   window[type].setItem(autoAddPrefix(key), encryptString);
 };
 
 // 删除 removeStorage
-export const removeStorage = (key: string, type: StorageType = 'localStorage') => {
+export const removeStorage = (
+  key: string,
+  type: StorageType = 'localStorage'
+) => {
   window[type].removeItem(autoAddPrefix(key));
 };
 
 // 获取 getStorage
-export const getStorage = <T>(key: string, type: StorageType = 'localStorage'): StorageValue<T> => {
+export const getStorage = <T>(
+  key: string,
+  type: StorageType = 'localStorage'
+): StorageValue<T> => {
   key = autoAddPrefix(key);
   // key 不存在判断
-  if (!window[type].getItem(key) || JSON.stringify(window[type].getItem(key)) === 'null') {
+  if (
+    !window[type].getItem(key) ||
+    JSON.stringify(window[type].getItem(key)) === 'null'
+  ) {
     return null;
   }
 
@@ -143,7 +160,7 @@ export const getStorage = <T>(key: string, type: StorageType = 'localStorage'): 
 // 是否存在 hasStorage
 export const hasStorage = (key: string): boolean => {
   key = autoAddPrefix(key);
-  const arr = getStorageAll().filter(item => {
+  const arr = getStorageAll().filter((item) => {
     return item.key === key;
   });
   return !!arr.length;
@@ -160,7 +177,10 @@ export const getStorageKeys = (): (string | null)[] => {
 };
 
 // 根据索引获取key
-export const getStorageForIndex = (index: number, type: StorageType = 'localStorage') => {
+export const getStorageForIndex = (
+  index: number,
+  type: StorageType = 'localStorage'
+) => {
   return window[type].key(index);
 };
 
@@ -176,7 +196,11 @@ export const clearStorage = (type: StorageType = 'localStorage') => {
 
 /** SessionStorage */
 
-export const setSessionStorage = <T>(key: string, value: StorageValue<T>, expire = 0) => {
+export const setSessionStorage = <T>(
+  key: string,
+  value: StorageValue<T>,
+  expire = 0
+) => {
   return setStorage<T>(key, value, expire, 'sessionStorage');
 };
 

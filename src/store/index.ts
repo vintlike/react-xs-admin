@@ -1,5 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 // import thunk from 'redux-thunk';
 import appReducer from './modules/app';
@@ -9,7 +18,7 @@ import userReducer from './modules/user';
 const reducers = combineReducers({
   app: appReducer,
   route: routeReducer,
-  user: userReducer,
+  user: userReducer
 });
 
 const persistConfig = {
@@ -18,19 +27,19 @@ const persistConfig = {
   // 白名单
   whitelist: ['app', 'route', 'user'],
   // 黑名单
-  blacklist: [],
+  blacklist: []
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+      }
+    })
 });
 
 // 从 store 本身推断出 `RootState` 和 `AppDispatch` 类型

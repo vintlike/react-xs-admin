@@ -6,7 +6,12 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export function pwaPlugin() {
   const options = {
-    includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+    includeAssets: [
+      'favicon.svg',
+      'favicon.ico',
+      'robots.txt',
+      'apple-touch-icon.png'
+    ],
     logLevel: 'silent',
     manifest: {
       name: '小斯管理后台模板',
