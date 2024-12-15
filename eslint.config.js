@@ -25,5 +25,6 @@ export default jsxiaosi({
     '@typescript-eslint/no-non-null-assertion': 'off',
     'prefer-const': 'off',
     'ts/no-unused-vars': 'off',
+    "ts/consistent-type-definitions": 'off',
   }
 });
