@@ -29,7 +29,7 @@ export function handlePowerRoute(
   routerList.forEach((item) => {
     const rtItem = cloneDeep(item);
 
-    if (!rtItem?.handle?.whiteList) {
+    if (!rtItem?.meta?.whiteList) {
       const rItem = dataRouter.find((r) => r.id === rtItem.id);
       if (rItem) {
         if (rItem.children && rtItem.children && rtItem.children.length) {

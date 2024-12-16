@@ -7,7 +7,7 @@ const scopes = fs
   .readdirSync(
     path.resolve(path.dirname(fileURLToPath(import.meta.url)), 'src')
   )
-  .map((i) => i.toLowerCase());
+  .map((item) => item.toLowerCase());
 
 const gitStatus = execSync('git status --porcelain || true')
   .toString()

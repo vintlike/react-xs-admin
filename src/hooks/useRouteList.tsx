@@ -38,7 +38,7 @@ export const useRouteList = () => {
   function routeListToMenu(list: RouteItem[], path?: React.Key): MenuItem[] {
     const menuList: MenuItem[] = [];
     list.forEach((item: RouteItem) => {
-      if (item?.handle?.hideSidebar) {
+      if (item?.meta?.hideSidebar) {
         return;
       }
 
@@ -67,12 +67,12 @@ export const useRouteList = () => {
         label: (
           <Text
             style={{ color: 'currentcolor' }}
-            ellipsis={{ tooltip: item?.handle?.label }}
+            ellipsis={{ tooltip: item?.meta?.label }}
           >
-            {item?.handle?.label}
+            {item?.meta?.label}
           </Text>
         ),
-        icon: item?.handle?.icon
+        icon: item?.meta?.icon
       };
 
       if (item.children && !item.element) {

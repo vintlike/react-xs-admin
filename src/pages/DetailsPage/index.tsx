@@ -33,14 +33,15 @@ const DateilsPage = () => {
         })}
       </div>
       <div style={{ marginTop: 12 }}>
-        {[1, 2, 3, 4, 5].map((i) => {
+        {[1, 2, 3, 4, 5].map((item) => {
           return (
             <Button
-              key={i}
+              key={item}
               style={{ marginRight: 12 }}
-              onClick={() => qureyChange('params', i)}
+              onClick={() => qureyChange('params', item)}
             >
-              {intl.formatMessage({ id: 'layout.menu.detailsPage' })}Params-{i}
+              {intl.formatMessage({ id: 'layout.menu.detailsPage' })}Params-
+              {item}
             </Button>
           );
         })}

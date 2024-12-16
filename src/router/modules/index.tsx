@@ -26,7 +26,7 @@ export const defaultRoute: RouteItem[] = [
     path: '/home',
     id: 'Home',
     element: <Home />,
-    handle: {
+    meta: {
       label: FormattedMessage({ id: 'layout.menu.home' }),
       icon: <HomeOutlined />
     }
@@ -35,7 +35,7 @@ export const defaultRoute: RouteItem[] = [
     path: '/nested',
     id: 'Nested',
     redirect: '/nested/menu1',
-    handle: {
+    meta: {
       label: FormattedMessage({ id: 'layout.menu.nesting' }),
       icon: <AppstoreOutlined />
     },
@@ -44,19 +44,19 @@ export const defaultRoute: RouteItem[] = [
         path: 'menu1',
         id: 'Menu1',
         redirect: '/nested/menu1/menu1-1',
-        handle: { label: 'menu-1' },
+        meta: { label: 'menu-1' },
         children: [
           {
             path: 'menu1-1',
             id: 'Menu1-1',
             element: <Menu1_1 />,
-            handle: { label: 'menu-1-1' }
+            meta: { label: 'menu-1-1' }
           },
           {
             path: 'menu1-2',
             id: 'Menu1-2',
             element: <Menu1_2 />,
-            handle: { label: 'menu-1-2' }
+            meta: { label: 'menu-1-2' }
           }
         ]
       }
@@ -66,7 +66,7 @@ export const defaultRoute: RouteItem[] = [
     path: '/power',
     id: 'Power',
     redirect: '/power/permissions',
-    handle: {
+    meta: {
       label: FormattedMessage({ id: 'layout.menu.permissions' }),
       icon: <UserSwitchOutlined />
     },
@@ -75,7 +75,7 @@ export const defaultRoute: RouteItem[] = [
         path: 'permissions',
         id: 'Permissions',
         element: <Permissions />,
-        handle: {
+        meta: {
           label: FormattedMessage({ id: 'layout.menu.permissionsPage' })
         }
       },
@@ -83,7 +83,7 @@ export const defaultRoute: RouteItem[] = [
         path: 'test-permissions-a',
         id: 'TestPermissionsA',
         element: <TestPermissionsA />,
-        handle: {
+        meta: {
           label: FormattedMessage({ id: 'layout.menu.testPermissionsPage1' })
         }
       },
@@ -91,7 +91,7 @@ export const defaultRoute: RouteItem[] = [
         path: 'test-permissions-b',
         id: 'TestPermissionsB',
         element: <TestPermissionsB />,
-        handle: {
+        meta: {
           label: FormattedMessage({ id: 'layout.menu.testPermissionsPage2' })
         }
       }
@@ -101,7 +101,7 @@ export const defaultRoute: RouteItem[] = [
     path: '/details-page',
     id: 'DetailsPage',
     alwaysShow: false,
-    handle: {
+    meta: {
       label: FormattedMessage({ id: 'layout.menu.detailsPage' }),
       whiteList: true
     },
@@ -110,7 +110,7 @@ export const defaultRoute: RouteItem[] = [
         path: '',
         id: 'DetailsList',
         element: <DetailsPage />,
-        handle: {
+        meta: {
           label: FormattedMessage({ id: 'layout.menu.detailsPage' }),
           icon: <DatabaseOutlined />
         }
@@ -119,13 +119,13 @@ export const defaultRoute: RouteItem[] = [
         path: 'details-info',
         id: 'DetailsInfo',
         element: <DetailsInfo />,
-        handle: { label: '详情页', hideSidebar: true }
+        meta: { label: '详情页', hideSidebar: true }
       },
       {
         path: 'details-params/:id',
         id: 'DetailsParams',
         element: <DetailsParams />,
-        handle: { label: '详情页', hideSidebar: true }
+        meta: { label: '详情页', hideSidebar: true }
       }
     ]
   }
@@ -139,7 +139,7 @@ export const whiteList: RouteItem[] = [
   {
     path: '/refresh/*',
     element: <Refresh />,
-    handle: { label: '', hideSidebar: true, whiteList: true }
+    meta: { label: '', hideSidebar: true, whiteList: true }
   }
 ];
 

@@ -16,6 +16,5 @@ export type RouteItem = Omit<RouteObject, 'children'> & {
   redirect?: string;
   children?: RouteItem[];
   alwaysShow?: boolean;
-  handle?: MenuItem;
-  // meta: MenuItem;
+  meta?: MenuItem;
 };
