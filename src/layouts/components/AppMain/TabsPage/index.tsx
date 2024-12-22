@@ -1,7 +1,7 @@
 import { FormattedMessage } from '@/components/FormattedMessage';
 import { useRouteList } from '@/hooks/useRouteList';
 import { useRefresh } from '@/hooks/web/useRefresh';
-import { defaultRoute } from '@/router/modules';
+import { defaultRoutes } from '@/router';
 import { findRouteByPath } from '@/router/RouteUtil';
 import { useAppSelector } from '@/store/hooks';
 import { CaretDownFilled, ReloadOutlined } from '@ant-design/icons';
@@ -22,7 +22,7 @@ const TabsPage = memo((_props: Props) => {
   const navigate = useNavigate();
   const mark = useMatch(location.pathname);
   const { routeListToMenu } = useRouteList();
-  const menuList = routeListToMenu(defaultRoute);
+  const menuList = routeListToMenu(defaultRoutes);
   const asyncRouter = useAppSelector((state) => state.route.asyncRouter);
   const multiTabs = useAppSelector((state) => state.route.multiTabs);
   const { addRouteTabs, removeTab } = useTabsChange();

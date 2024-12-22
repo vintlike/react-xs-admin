@@ -25,7 +25,7 @@ const Login = memo(() => {
 
   const onFinish = async (values: LoginForm) => {
     setLoading(true);
-    const res = await getUserInfo(values.username, values.password);
+    const res = await getUserInfo(values.userName, values.password);
     if (res.code === 1) {
       await initAsyncRoute(res.data.power);
       dispatch(setUserInfo(res.data));
@@ -67,7 +67,7 @@ const Login = memo(() => {
           onFinish={onFinish}
         >
           <Form.Item<LoginForm>
-            name="username"
+            name="userName"
             rules={[
               {
                 required: true,
@@ -77,7 +77,7 @@ const Login = memo(() => {
           >
             <Input
               prefix={<UserOutlined />}
-              placeholder={intl.formatMessage({ id: 'login.username' })}
+              placeholder={intl.formatMessage({ id: 'login.userName' })}
               allowClear
             />
           </Form.Item>

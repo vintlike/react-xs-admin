@@ -9,6 +9,7 @@ const power = [
   {
     path: '/nested',
     id: 'Nested',
+
     children: [
       {
         path: 'menu1',
@@ -68,14 +69,14 @@ export default defineFakeRoute([
     timeout: 500,
     method: 'post',
     response: ({ body }: { body: Recordable }) => {
-      const { name } = body;
-      if (name === 'admin') {
+      const { userName } = body;
+      if (userName === 'admin') {
         return {
           data: [...power, ...adminRoute],
           code: 1,
           message: 'ok'
         };
-      } else if (name === 'test') {
+      } else if (userName === 'test') {
         return {
           data: [...power, ...testRoute],
           code: 1,

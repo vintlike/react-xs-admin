@@ -1,19 +1,19 @@
+import LayoutSpin from '@/components/LayoutSpin';
+import { localeConfig, setIntl } from '@/locales';
+import { initAsyncRoute } from '@/router/RouteUtil';
+import RouteView from '@/router/RouteView';
+import { useAppSelector } from '@/store/hooks';
 import { ConfigProvider, theme } from 'antd';
 import enUS from 'antd/locale/en_US';
 import zhCN from 'antd/locale/zh_CN';
 import dayjs from 'dayjs';
+
 import { Suspense, useEffect, useMemo } from 'react';
 import { IntlProvider } from 'react-intl';
 import { shallowEqual } from 'react-redux';
-import LayoutSpin from './components/LayoutSpin';
-import { localeConfig, setIntl } from './locales';
-
-import RouteView from './router';
-import { initAsyncRoute } from './router/RouteUtil';
-import { useAppSelector } from './store/hooks';
-import 'dayjs/locale/zh-cn';
-import 'dayjs/locale/en';
 import 'antd/dist/reset.css';
+import 'dayjs/locale/en';
+import 'dayjs/locale/zh-cn';
 
 function App() {
   const { locale, color, themeMode } = useAppSelector(

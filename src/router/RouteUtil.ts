@@ -2,17 +2,17 @@ import { getRouteApi } from '@/services/route';
 import store from '@/store';
 import { setStoreAsyncRouter } from '@/store/modules/route';
 import { cloneDeep } from 'lodash';
-import type { MenuItem, RouteItem } from '@/router/route';
+import type { MenuItem, RouteItem } from '@/router/RouteTypes';
 import type { AsyncRouteType } from '@/store/modules/route';
 import type { Key } from 'react';
-import { defaultRoute } from './modules';
+import { defaultRoutes } from '.';
 
 // import { HomeOutlined } from '@ant-design/icons';
 
 export async function initAsyncRoute(power: string) {
   store.dispatch(setStoreAsyncRouter([]));
 
-  const res = await getRouteApi({ name: power });
+  const res = await getRouteApi({ userName: power });
 
   if (res.data.length) {
     store.dispatch(setStoreAsyncRouter(res.data));
@@ -22,32 +22,35 @@ export async function initAsyncRoute(power: string) {
 }
 
 export function handlePowerRoute(
-  dataRouter: AsyncRouteType[],
-  routerList: RouteItem[] = defaultRoute
+  routeSource: AsyncRouteType[] = [],
+  routeTarget: RouteItem[] = defaultRoutes
 ) {
-  const newRouteList: RouteItem[] = [];
-  routerList.forEach((item) => {
+  const routeList: RouteItem[] = [];
+
+  routeTarget.forEach((item) => {
     const rtItem = cloneDeep(item);
 
     if (!rtItem?.meta?.whiteList) {
-      const rItem = dataRouter.find((r) => r.id === rtItem.id);
+      const rItem = routeSource.find((r) => r.id === rtItem.id);
+
       if (rItem) {
-        if (rItem.children && rtItem.children && rtItem.children.length) {
+        if (rItem?.children && rtItem?.children?.length) {
           const children = handlePowerRoute(rItem.children, rtItem.children);
           rtItem.children = children;
+
           if (children) {
-            newRouteList.push(rtItem);
+            routeList.push(rtItem);
           }
         } else {
-          newRouteList.push(rtItem);
+          routeList.push(rtItem);
         }
       }
     } else {
-      newRouteList.push(rtItem);
+      routeList.push(rtItem);
     }
   });
 
-  return newRouteList;
+  return routeList;
 }
 
 // 通过path获取父级路径

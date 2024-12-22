@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import type { RouteItem } from '@/router/route';
+import type { RouteItem } from '@/router/RouteTypes';
 
 export type ILocales = 'zh-CN' | 'en-US';
 

@@ -9,8 +9,11 @@ const LayoutSpin = memo((props: LayoutSpinProps) => {
   const globalTheme = theme.useToken();
 
   const position = useMemo(() => {
-    if (props.position) return `${props.position} top-0 left-0 z-40`;
-    else return '';
+    if (props.position) {
+      return `${props.position} top-0 left-0 z-40`;
+    } else {
+      return '';
+    }
   }, [props.position]);
 
   return (

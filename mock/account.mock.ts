@@ -2,8 +2,8 @@ import { defineFakeRoute } from 'vite-plugin-fake-server/client';
 import type { Recordable } from 'vite-plugin-fake-server';
 
 const userInfo = {
-  name: '爱喝蜂蜜绿的小斯斯',
-  userid: '00000001',
+  userName: '爱喝蜂蜜绿的小斯斯',
+  userId: '00000001',
   email: '1531733886@qq.com',
   signature:
     '甜甜的蜂蜜，甘甜的绿茶，蜂蜜中和了绿茶的苦涩保留了绿茶回甘，绝妙啊',
@@ -14,8 +14,8 @@ const userInfo = {
 };
 
 const userInfo2 = {
-  name: 'test',
-  userid: '00000002',
+  userName: 'test',
+  userId: '00000002',
   email: '12312311223@qq.com',
   signature: '小啊小啊浪',
   introduction: '一个只会喝蜂蜜绿的小前端',
@@ -30,15 +30,15 @@ export default defineFakeRoute([
     timeout: 1000,
     method: 'post',
     response: ({ body }: { body: Recordable }) => {
-      const { username, password } = body;
-      if (username === 'admin' && password === 'admin123') {
+      const { userName, password } = body;
+      if (userName === 'admin' && password === 'admin123') {
         userInfo.token = genID(16);
         return {
           data: userInfo,
           code: 1,
           message: 'ok'
         };
-      } else if (username === 'test' && password === 'test123') {
+      } else if (userName === 'test' && password === 'test123') {
         userInfo2.token = genID(16);
         return {
           data: userInfo2,

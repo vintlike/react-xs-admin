@@ -1,5 +1,5 @@
 export interface LoginForm {
-  username: string;
+  userName: string;
   password: string;
   checked: boolean;
 }

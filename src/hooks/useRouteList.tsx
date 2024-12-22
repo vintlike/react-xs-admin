@@ -1,7 +1,7 @@
 import { ErrorElement } from '@/router/lazy/whiteList';
 import { Typography } from 'antd';
 import { redirect } from 'react-router-dom';
-import type { MenuItem, RouteItem } from '@/router/route';
+import type { MenuItem, RouteItem } from '@/router/RouteTypes';
 import type { RouteObject } from 'react-router-dom';
 
 const { Text } = Typography;
@@ -15,7 +15,7 @@ export const useRouteList = () => {
         element: item?.element
       };
 
-      if (item.element) {
+      if (item?.element) {
         rtItem.errorElement = <ErrorElement pageType="Page" />;
       }
 
@@ -25,7 +25,7 @@ export const useRouteList = () => {
           rtItem.children.push({
             index: true,
             loader() {
-              return redirect(item.redirect || '');
+              return redirect((item.redirect as string) || '');
             }
           });
         }
